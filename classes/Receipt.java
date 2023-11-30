@@ -10,13 +10,11 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class Receipt implements Serializable {
-  public static final long serialVersionUID = 1234L;
-
   private int ID;
   private static int counter = 0;
-  private Cashier cashier;
-  private LocalDate date;
-  private String time;
+  private final Cashier cashier;
+  private final LocalDate date;
+  private final String time;
   private int meat;
   private int vegetables;
   private int fruits;
@@ -33,19 +31,6 @@ public class Receipt implements Serializable {
     this.vegetables = vegetables;
     this.fruits = fruits;
   }
-
-  public int getID() {
-    return this.ID;
-  }
-
-  public Cashier getCashier() {
-    return this.cashier;
-  }
-
-  public LocalDate getDate() {
-    return this.date;
-  }
-
   public String printProducts() {
     String res = "";
     if (this.meat > 0)
@@ -65,14 +50,14 @@ public class Receipt implements Serializable {
     return res;
   }
 
-  public void writeReceipt(Shop shop, int meat, int vegetables, int fruits) {
+  public void writeReceipt() {
       String fileName = "C:\\Users\\rstoi\\Desktop\\Receipts\\receipt_" + ID + ".txt";
       while(new File(fileName).exists()){
         fileName = "C:\\Users\\rstoi\\Desktop\\Receipts\\receipt_" + ++ID + ".txt";
       }
 
-      try (FileWriter fw = new FileWriter(new File(fileName), true)) {
-        fw.write(this.toString() + printProducts());
+      try (FileWriter fw = new FileWriter(fileName, true)) {
+        fw.write(this + printProducts());
         this.cashier.getWorkplace().addReceipts(this);
       } catch (FileNotFoundException e) {
         System.out.println("File not found" + e);

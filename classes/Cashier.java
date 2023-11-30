@@ -1,10 +1,10 @@
 package classes;
 
 public class Cashier {
-  private int ID;
+  private final int ID;
   private static int counter = 1000;
-  private String name;
-  private Shop workplace;
+  private final String name;
+  private final Shop workplace;
 
   public Cashier(String name, Shop workplace) {
     this.ID = counter;

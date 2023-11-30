@@ -38,7 +38,7 @@ public class Till {
         shop.sell(c);
         System.out.println("Customer " + c.getID() + " is now to cashier " + this.getCashier().getName());
         Receipt rec = new Receipt(cashier, c.getMeat(), c.getVegetables(), c.getFruits());
-        rec.writeReceipt(shop, c.getMeat(), c.getVegetables(), c.getFruits());
+        rec.writeReceipt();
       } catch (NotEnoughGoodsException e) {
         System.out.println(e.getMessage());
       } finally {

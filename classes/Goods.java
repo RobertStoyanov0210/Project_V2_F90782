@@ -3,8 +3,8 @@ package classes;
 import java.time.LocalDate;
 
 public class Goods {
-  private String goodsName;
-  private int price;
+  private final String goodsName;
+  private final int price;
   private LocalDate validity = LocalDate.now();
 
   public Goods(String goodsName, int price, int plusDays) {
