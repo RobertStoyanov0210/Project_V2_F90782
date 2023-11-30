@@ -6,11 +6,11 @@ public class Cashier {
   private String name;
   private Shop workplace;
 
-  public Cashier(String name, Shop workokace) {
+  public Cashier(String name, Shop workplace) {
     this.ID = counter;
     counter++;
     this.name = name;
-    this.workplace = workokace;
+    this.workplace = workplace;
   }
 
   public Shop getWorkplace() {

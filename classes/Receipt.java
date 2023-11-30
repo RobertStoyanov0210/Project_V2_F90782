@@ -66,15 +66,19 @@ public class Receipt implements Serializable {
   }
 
   public void writeReceipt(Shop shop, int meat, int vegetables, int fruits) {
-    String fileName = "receipt_" + ID;
-    try (FileWriter fw = new FileWriter(new File(fileName), true)) {
-      fw.write(this.toString() + printProducts());
-      this.cashier.getWorkplace().addReceipts(this);
-    } catch (FileNotFoundException e) {
-      System.out.println("File not found" + e);
-    } catch (IOException e) {
-      System.out.println("IOException" + e);
-    }
+      String fileName = "C:\\Users\\rstoi\\Desktop\\Receipts\\receipt_" + ID + ".txt";
+      while(new File(fileName).exists()){
+        fileName = "C:\\Users\\rstoi\\Desktop\\Receipts\\receipt_" + ++ID + ".txt";
+      }
+
+      try (FileWriter fw = new FileWriter(new File(fileName), true)) {
+        fw.write(this.toString() + printProducts());
+        this.cashier.getWorkplace().addReceipts(this);
+      } catch (FileNotFoundException e) {
+        System.out.println("File not found" + e);
+      } catch (IOException e) {
+        System.out.println("IOException" + e);
+      }
   }
 
   @Override
